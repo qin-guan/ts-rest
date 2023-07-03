@@ -48,10 +48,10 @@ export class RequestValidationError extends BadRequestException {
     public body: z.ZodError | null
   ) {
     super({
-      paramsResult: pathParams,
-      headersResult: headers,
-      queryResult: query,
-      bodyResult: body,
+      pathParameterErrors: pathParams,
+      headerErrors: headers,
+      queryParameterErrors: query,
+      bodyErrors: body,
     });
   }
 }

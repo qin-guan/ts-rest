@@ -177,7 +177,7 @@ describe('ts-rest-nest-handler', () => {
 
       expect(responsePost.status).toBe(400);
       expect(responsePost.body).toEqual({
-        bodyResult: {
+        bodyErrors: {
           issues: [
             {
               code: 'invalid_type',
@@ -189,9 +189,9 @@ describe('ts-rest-nest-handler', () => {
           ],
           name: 'ZodError',
         },
-        headersResult: null,
-        queryResult: null,
-        paramsResult: null,
+        headerErrors: null,
+        queryParameterErrors: null,
+        pathParameterErrors: null,
       });
     });
   });
@@ -312,7 +312,7 @@ describe('ts-rest-nest-handler', () => {
 
       expect(responsePost.status).toBe(400);
       expect(responsePost.body).toEqual({
-        bodyResult: {
+        bodyErrors: {
           issues: [
             {
               code: 'invalid_type',
@@ -324,9 +324,9 @@ describe('ts-rest-nest-handler', () => {
           ],
           name: 'ZodError',
         },
-        headersResult: null,
-        queryResult: null,
-        paramsResult: null,
+        headerErrors: null,
+        queryParameterErrors: null,
+        pathParameterErrors: null,
       });
     });
 
@@ -470,7 +470,7 @@ describe('ts-rest-nest-handler', () => {
       }).toEqual({
         status: 400,
         body: {
-          bodyResult: {
+          bodyErrors: {
             issues: [
               {
                 code: 'invalid_type',
@@ -483,9 +483,9 @@ describe('ts-rest-nest-handler', () => {
             ],
             name: 'ZodError',
           },
-          headersResult: null,
-          paramsResult: null,
-          queryResult: null,
+          headerErrors: null,
+          queryParameterErrors: null,
+          pathParameterErrors: null,
         },
       });
     });
@@ -1025,9 +1025,9 @@ describe('ts-rest-nest-handler', () => {
     }).toEqual({
       status: 400,
       body: {
-        bodyResult: null,
-        headersResult: null,
-        paramsResult: {
+        bodyErrors: null,
+        headerErrors: null,
+        pathParameterErrors: {
           issues: [
             {
               code: 'invalid_type',
@@ -1039,7 +1039,7 @@ describe('ts-rest-nest-handler', () => {
           ],
           name: 'ZodError',
         },
-        queryResult: null,
+        queryParameterErrors: null,
       },
     });
 
