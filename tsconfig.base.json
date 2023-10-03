@@ -29,6 +29,7 @@
       "@ts-rest/example-nest": ["libs/example-nest/src/index.ts"],
       "@ts-rest/express": ["libs/ts-rest/express/src/index.ts"],
       "@ts-rest/fastify": ["libs/ts-rest/fastify/src/index.ts"],
+      "@ts-rest/nuxt": ["libs/ts-rest/nuxt/src/index.ts"],
       "@ts-rest/nest": ["libs/ts-rest/nest/src/index.ts"],
       "@ts-rest/next": ["libs/ts-rest/next/src/index.ts"],
       "@ts-rest/non-strict-mode-test": [
@@ -37,8 +38,8 @@
       "@ts-rest/open-api": ["libs/ts-rest/open-api/src/index.ts"],
       "@ts-rest/react-query": ["libs/ts-rest/react-query/src/index.ts"],
       "@ts-rest/solid-query": ["libs/ts-rest/solid-query/src/index.ts"],
-      "@ts-rest/vue-query": ["libs/ts-rest/vue-query/src/index.ts"],
-      "@ts-rest/ts-rest/utils": ["libs/ts-rest/utils/src/index.ts"]
+      "@ts-rest/ts-rest/utils": ["libs/ts-rest/utils/src/index.ts"],
+      "@ts-rest/vue-query": ["libs/ts-rest/vue-query/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

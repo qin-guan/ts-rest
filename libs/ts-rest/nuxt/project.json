@@ -1,0 +1,63 @@
+{
+  "name": "ts-rest-nuxt",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ts-rest/nuxt/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "project": "libs/ts-rest/nuxt/package.json",
+        "outputPath": "dist/libs/ts-rest/nuxt",
+        "main": "libs/ts-rest/nuxt/src/index.ts",
+        "tsConfig": "libs/ts-rest/nuxt/tsconfig.lib.json",
+        "assets": [
+          {
+            "glob": "CHANGELOG.md",
+            "input": "libs/ts-rest/nuxt",
+            "output": "."
+          },
+          {
+            "glob": "README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "format": ["esm", "cjs"],
+        "compiler": "tsc",
+        "rollupConfig": "tools/scripts/rollup.config.js",
+        "generateExportsField": true,
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node tools/scripts/publish.mjs ts-rest-nuxt {args.ver} {args.tag}"
+      },
+      "dependsOn": [
+        {
+          "target": "build"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ts-rest/nuxt/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/ts-rest/nuxt"],
+      "options": {
+        "jestConfig": "libs/ts-rest/nuxt/jest.config.ts",
+        "passWithNoTests": true,
+        "coverageReporters": ["lcov", "text-summary"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@ts-rest/nuxt",
+  "version": "3.30.2",
+  "peerDependencies": {
+    "h3": "latest",
+    "zod": "^3.21.0"
+  },
+  "peerDependenciesMeta": {
+    "zod": {
+      "optional": true
+    }
+  }
+}
