@@ -11,10 +11,6 @@ import {
 } from '@ts-rest/core';
 import type {
   IRouter,
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
 } from 'express-serve-static-core';
 import {
   AppRouteImplementationOrOptions,
@@ -22,6 +18,10 @@ import {
   RecursiveRouterObj,
   TsRestRequestHandler,
   isAppRouteImplementation,
+  H3Request,
+  H3Response,
+  H3NextFunction,
+  H3RequestHandler
 } from './types';
 import { RequestValidationError } from './request-validation-error';
 
@@ -32,7 +32,7 @@ export const initServer = () => {
   };
 };
 
-const recursivelyApplyExpressRouter = ({
+const recursivelyApplyH3Router = ({
   schema,
   router,
   processRoute,
@@ -50,7 +50,7 @@ const recursivelyApplyExpressRouter = ({
         throw new Error(`[ts-rest] Expected AppRouter but received AppRoute`);
       }
 
-      recursivelyApplyExpressRouter({
+      recursivelyApplyH3Router({
         schema: schema[key],
         router: (router as RecursiveRouterObj<any>)[key],
         processRoute,
@@ -69,8 +69,8 @@ const recursivelyApplyExpressRouter = ({
 };
 
 const validateRequest = (
-  req: Request,
-  res: Response,
+  req: H3Request,
+  res: H3Response,
   schema: AppRouteQuery | AppRouteMutation,
   options: TsRestExpressOptions<AppRouter>
 ) => {

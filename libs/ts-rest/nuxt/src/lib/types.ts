@@ -13,12 +13,13 @@ import {
   Response,
   Request,
 } from 'express-serve-static-core';
-import {H3Event, NodeMiddleware} from 'h3'
+import {H3Event, H3EventContext, NodeMiddleware, EventHandlerRequest} from 'h3'
 import { RequestValidationError } from './request-validation-error';
 
-type H3Request = H3Event['node']['req']
-type H3Response = H3Event['node']['res']
-type H3NextFunction = Parameters<NodeMiddleware>[2]
+export type H3Request = EventHandlerRequest
+export type H3Response = H3Event['node']['res']
+export type H3NextFunction = Parameters<NodeMiddleware>[2]
+export type H3RequestHandler = Parameters<NodeMiddleware>[0]
 
 type AppRouteQueryImplementation<T extends AppRouteQuery> = (
   input: ServerInferRequest<T, H3Request['headers']> & {
@@ -49,7 +50,7 @@ export type TsRestRequest<
   T extends AppRouter | AppRoute,
   F extends FlattenAppRouter<T> = FlattenAppRouter<T>,
   S extends ServerInferRequest<F> = ServerInferRequest<F>
-> = Request<
+> = H3Request<
   'params' extends keyof S ? S['params'] : Express['request']['params'],
   ServerInferResponseBody<F>,
   'body' extends keyof S ? S['body'] : Express['request']['body'],
@@ -58,7 +59,7 @@ export type TsRestRequest<
   tsRestRoute: F;
   headers: 'headers' extends keyof S
     ? S['headers']
-    : Express['request']['headers'];
+    : H3Request['headers'];
 };
 
 export type TsRestRequestHandler<T extends AppRouter | AppRoute> = (
